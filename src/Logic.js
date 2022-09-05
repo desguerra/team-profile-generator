@@ -131,13 +131,13 @@ class Logic {
                     return console.log('Did not make new engineer/intern object...');
                 }
 
-                // TESTING EMPLOYEE TYPE
+                // TESTING EMPLOYEE TYPE AND NEW EMPLOYEE OBJECT
                 // console.log(this.employeeType);
-
                 console.log(this.employee);
 
                 // go back to add new emp prompt
-                // this.newEmployeePrompt(employeeType);
+                this.newEmployeePrompt();
+
             });
     }
 }
