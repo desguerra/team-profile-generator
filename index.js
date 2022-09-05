@@ -1,3 +1,3 @@
-const Logic = require('./src/Logic');
+const Logic = require('./lib/Logic');
 
 new Logic().initBuild();
