@@ -117,15 +117,15 @@ class Logic {
                     }
                 },
             ])
-            .then((  ) => {
+            .then(( { empName, empId, empEmail, empGithub, empSchool} ) => {
                 
                 if (this.employeeType === 'Engineer') {
                     console.log('engineer object...');
-                    //this.employee = new Engineer(name, id, email, empGithub);
+                    this.employee = new Engineer(empName, empId, empEmail, empGithub);
                 }
                 else if (this.employeeType === 'Intern') {
                     console.log('intern object...');
-                    //this.employee = new Engineer(name, id, email, empSchool);
+                    this.employee = new Intern (empName, empId, empEmail, empSchool);
                 }
                 else {
                     return console.log('Did not make new engineer/intern object...');
@@ -134,7 +134,7 @@ class Logic {
                 // TESTING EMPLOYEE TYPE
                 // console.log(this.employeeType);
 
-                // console.log(this.employeeType);
+                console.log(this.employee);
 
                 // go back to add new emp prompt
                 // this.newEmployeePrompt(employeeType);
