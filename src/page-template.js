@@ -1,88 +1,83 @@
-function generateManager() {
+function generateManager(manager) {
     return `<div class="col-sm-6 col-lg-3 my-2">
     <div class="card">
         <div class="card-header">
-            <h2 class="card-title">Manager Name</h2>
+            <h2 class="card-title">${manager.name}</h2>
             <h3 class="card-subtitle text-muted">
-                Manager Role
+                ${manager.role}
             </h3>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">ID: 1</li>
+            <li class="list-group-item">ID: ${manager.id}</li>
             <li class="list-group-item">
                 Email:
                 <a
-                    href="mailto:manager@fakemail.com"
+                    href="mailto:${manager.email}"
                     class="link-info"
                     target="_blank"
-                    >manager@fakemail.com</a
+                    >${manager.email}</a
                 >
             </li>
-            <li class="list-group-item">Office #: 100</li>
+            <li class="list-group-item">Office #: ${manager.officeNumber}</li>
         </ul>
     </div>
 </div>`
 };
 
-function generateNextEmployees() {
-    return `<div class="col-sm-6 col-lg-3 my-2">
-    <div class="card">
-        <div class="card-header">
-            <h2 class="card-title">Engineer Name</h2>
-            <h3 class="card-subtitle text-muted">
-                Engineer Role
-            </h3>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">ID: 2</li>
-            <li class="list-group-item">
-                Email:
-                <a
-                    href="mailto:eng@fakemail.com"
-                    class="link-info"
-                    target="_blank"
-                    >eng@fakemail.com</a
-                >
-            </li>
-            <li class="list-group-item">
-                Github:
-                <a
-                    href="https://github.com/octocat"
-                    class="link-info"
-                    target="_blank"
-                    >octocat</a
-                >
-            </li>
-        </ul>
-    </div>
-</div>
-
-<div class="col-sm-6 col-lg-3 my-2">
-    <div class="card">
-        <div class="card-header">
-            <h2 class="card-title">Intern Name</h2>
-            <h3 class="card-subtitle text-muted">
-                Intern Role
-            </h3>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">ID: 14</li>
-            <li class="list-group-item">
-                Email:
-                <a
-                    href="mailto:manager@fakemail.com"
-                    class="link-info"
-                    target="_blank"
-                    >intern@fakemail.com</a
-                >
-            </li>
-            <li class="list-group-item">School: UCD</li>
-        </ul>
-    </div>
-</div>`
+function isEngOrInt(employee) {
+    if (!employee.role) {
+        return ``;
+    } else if (employee.role === 'Engineer') {
+        return `Github:
+        <a
+            href="https://github.com/${employee.github}"
+            class="link-info"
+            target="_blank"
+            >${employee.github}</a
+        >`;
+    } else if (employee.role === 'Intern') {
+        return `School: ${employee.school}`
+    } else {
+        return ``;
+    }
 };
 
-function generateTemplate() {
+function generateNextEmployees(employeeList) {
+
+    const employeeCards = employeeList.map((card) => {
+        return `<div class="col-sm-6 col-lg-3 my-2">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">${card.name}</h2>
+                <h3 class="card-subtitle text-muted">
+                    ${card.role}
+                </h3>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">ID: ${card.id}</li>
+                <li class="list-group-item">
+                    Email:
+                    <a
+                        href="mailto:${card.email}"
+                        class="link-info"
+                        target="_blank"
+                        >${card.email}</a
+                    >
+                </li>
+                <li class="list-group-item">
+                    ${isEngOrInt(card)}
+                </li>
+            </ul>
+        </div>
+    </div>`
+    })
+    .join('');
+
+    return employeeCards;
+
+};
+
+function generateTemplate(managerData, employeeData) {
     return `<!DOCTYPE html>
     <html lang="en">
         <head>
@@ -119,9 +114,9 @@ function generateTemplate() {
             <main class="container p-3">
                 <div class="row d-flex justify-content-center">
                     
-                    ${generateManager()}
+                    ${generateManager(managerData)}
     
-                    ${generateNextEmployees()}
+                    ${generateNextEmployees(employeeData)}
 
                 </div>
             </main>
