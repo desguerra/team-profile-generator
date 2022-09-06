@@ -4,7 +4,7 @@
 
 This project is a **team profile generator** that uses **NodeJS**, **npm Inquirer**, **Jest**, and **Bootstrap**. After the user answers the series of prompts, an HTML file displaying the manager and the rest of team members will we written to `dist > team.html`.
 
-[Click HERE to view the project demonstration video!]()
+[Click HERE to view the project demonstration video!](https://drive.google.com/file/d/1mzSKNcftTI3RK1G0tMSCgnxgIcTCIq7o/view)
 
 ## Table of Contents
 
